@@ -5,7 +5,7 @@ import { z } from "zod";
 
 export const runtime = "nodejs"; // Prisma requires Node runtime 
 
-const ParsedAISchema = z.object({
+const ParsedAISchema = z.object({ 
   reply: z.string(),
   sentiment: z.enum(["positive", "neutral", "negative"]),
   keywords: z.array(z.string()).default([]),
@@ -48,7 +48,8 @@ export async function POST(req: NextRequest) {
 
     const aiJson = ParsedAISchema.parse(parsed);
 
-    const saved = await prisma.chatRecord.create({
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _saved = await prisma.chatRecord.create({
       data: {
         userInput,
         aiJson,
